@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Image, StyleSheet, View } from 'react-native';
-import { Container, Header, Label, Item, Content, Card, Form, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right, Picker } from 'native-base';
+import { Container, Header, Label, Item, Content, Card, Form, Input, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right, Picker } from 'native-base';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 export default class registerscreen extends Component {
@@ -32,28 +32,39 @@ export default class registerscreen extends Component {
               style={{color: 'grey', fontWeight: 'bold', left: 40, top: 22, fontSize: 20}} name="ellipsis-v"/>
             </Header>
             <Content>
-                <Body>
                     <Text style={{textAlign: 'center', top: 10, paddingRight: 15, paddingLeft: 15}}>
                     WhatsApp will send an SMS message to verify your phone number. Enter your country code and phone number:
                     </Text>
-                    <Form>
-                    <Item stackedLabel picker>
-						<Label>Choose a country</Label>
+                    <View style={{paddingLeft: 60, paddingRight: 60, top: 30}}>
+                        <Item success>
 							<Picker
                                 mode="dropdown"
                                 style={{ width: undefined }}
-                                placeholder="Select Gender"
+                                placeholder="Choose a country"
                                 placeholderStyle={{ color: "#bfc6ea" }}
                                 placeholderIconColor="#007aff"
                                 selectedValue={this.state.selected}
                                 onValueChange={this.onValueChange2.bind(this)}
                             >
-                                <Picker.Item label="Male" value="Male" />
-                                <Picker.Item label="Female" value="Female" />
+                                <Picker.Item label="United States" value="United States" />
+                                <Picker.Item label="Indonesia" value="Indonesia" />
                             </Picker>
-                    </Item>
-                    </Form>
-                </Body>
+                        </Item>
+                        <Item success style={{borderBottomWidth: 0}}>
+                            <Icon type="Entypo" name="plus"
+                            style={{color:'grey'}} />
+                            <Item success style={{width: 50}}>
+                              <Input  placeholder="62" />
+                            </Item>
+                            <Item success style={{width: 153}}>
+                               <Input  placeholder="No. Telp" />
+                            </Item>
+                        </Item>
+                        <Button style={{alignItems: 'center', left: 150, top:10, backgroundColor:'green', fontSize: 20}}>
+                            <Text style={{color: 'white'}}>NEXT</Text>
+                        </Button>
+                    </View> 
+                        
             </Content>
           </Container>
         );

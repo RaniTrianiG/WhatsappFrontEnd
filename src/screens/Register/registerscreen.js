@@ -60,9 +60,6 @@ export default class registerscreen extends Component {
                                <Input  placeholder="No. Telp" />
                             </Item>
                         </Item>
-                        <Button style={{alignItems: 'center', left: 150, top:10, backgroundColor:'green', fontSize: 20}}>
-                            <Text style={{color: 'white'}}>NEXT</Text>
-                        </Button>
                     </View> 
                         
             </Content>

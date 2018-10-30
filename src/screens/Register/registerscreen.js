@@ -11,9 +11,9 @@ export default class registerscreen extends Component {
 			selected : undefined
 		}
     }
-      onValueChange2(value) {
+      onValueChange(value) {
         this.setState({
-          gender: value
+          selected: value
         });
     }
 
@@ -32,28 +32,22 @@ export default class registerscreen extends Component {
               style={{color: 'grey', fontWeight: 'bold', left: 40, top: 22, fontSize: 20}} name="ellipsis-v"/>
             </Header>
             <Content>
-                <Body>
-                    <Text style={{textAlign: 'center', top: 10, paddingRight: 15, paddingLeft: 15}}>
-                    WhatsApp will send an SMS message to verify your phone number. Enter your country code and phone number:
-                    </Text>
-                    <Form>
-                    <Item stackedLabel picker>
-						<Label>Choose a country</Label>
-							<Picker
-                                mode="dropdown"
-                                style={{ width: undefined }}
-                                placeholder="Select Gender"
-                                placeholderStyle={{ color: "#bfc6ea" }}
-                                placeholderIconColor="#007aff"
-                                selectedValue={this.state.selected}
-                                onValueChange={this.onValueChange2.bind(this)}
-                            >
-                                <Picker.Item label="Male" value="Male" />
-                                <Picker.Item label="Female" value="Female" />
-                            </Picker>
-                    </Item>
-                    </Form>
-                </Body>
+                <Text style={{textAlign: 'center', top: 10, paddingRight: 15, paddingLeft: 15}}>
+                WhatsApp will send an SMS message to verify your phone number. Enter your country code and phone number:
+                </Text>
+                <Picker
+                    mode="dropdown"
+                    style={{ width: undefined }}
+                    placeholder="Choose a Country"
+                    placeholderStyle={{ color: "#bfc6ea" }}
+                    placeholderIconColor="#007aff"
+                    selectedValue={this.state.selected}
+                    onValueChange={this.onValueChange.bind(this)}
+                >
+                    <Picker.Item label="Choose a Country" />
+                    <Picker.Item label="Male" value="Male" />
+                    <Picker.Item label="Female" value="Female" />
+                </Picker>
             </Content>
           </Container>
         );

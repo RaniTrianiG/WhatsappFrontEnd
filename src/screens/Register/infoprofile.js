@@ -33,7 +33,7 @@ export default class infoprofile extends Component {
                          type="MaterialCommunityIcons" name="emoticon-happy" />
                     </View> 
                     <View style={{paddingTop: 350, left: 150}}>
-                        <Button style={{backgroundColor: 'green'}}>
+                        <Button onPress={() => this.props.navigation.navigate('home')} style={{backgroundColor: 'green'}}>
                             <Text>Next</Text>
                         </Button>
                     </View>

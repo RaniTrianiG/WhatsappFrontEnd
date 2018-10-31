@@ -63,7 +63,9 @@ export default class codeverification extends Component {
                         style={{color:'grey', textAlign: 'center', top: -325, right: 80}}>
                         Call me
                         </Text>
-                        
+                        <Button onPress={() => this.props.navigation.navigate('infoprofile')}>
+                            <Text>Just for Try</Text>
+                        </Button>
                     </View>
             </Content>
           </Container>

@@ -6,6 +6,7 @@ import {Container, Content, Header, Body, Icon, Thumbnail} from 'native-base';
 
 import splashscreens from '../../src/screens/Splash/splashscreen';
 import Register from '../../src/screens/Register/registerscreen';
+import ContactScreens from '../../src/screens/Contact/ContactScreen';
 
 export default class Rootstack extends Component {
     render() {
@@ -16,6 +17,7 @@ export default class Rootstack extends Component {
   }
 
 const MyApp = createStackNavigator({
+  ContactScreen: ContactScreens,
   splashscreens: splashscreens,
   registerscreen : Register
 });

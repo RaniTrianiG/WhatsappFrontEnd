@@ -60,7 +60,7 @@ export default class splashscreen extends Component {
                 </View>
             </CardItem>
             
-        <Button onPress={() => this.props.navigation.navigate('registerscreen')} style={{backgroundColor:'#9D9D9D', fontSize: 20, height: 70, top: 2, left: 90}}>
+        <Button onPress={() => this.props.navigation.navigate('home')} style={{backgroundColor:'#9D9D9D', fontSize: 20, height: 70, top: 2, left: 90}}>
             <Text style={{color:'black', textAlign: 'center'}}>Agree and continue</Text>
         </Button>
         </View>

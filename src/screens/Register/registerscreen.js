@@ -2,19 +2,28 @@ import React, { Component } from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 import { Container, Header, Label, Item, Content, Card, Form, Input, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right, Picker } from 'native-base';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { connect } from 'react-redux';
+import firebase from 'react-native-firebase';
+import { createUsers } from '../../../app/actions/users/users';
 
 export default class registerscreen extends Component {
 
     constructor(){
 		super();
 		this.state = {
-			selected : undefined
+            selected : undefined,
+            phone_number: ''
 		}
     }
       onValueChange2(value) {
         this.setState({
           gender: value
         });
+    }
+    phoneVerification(){
+        firebase.auth().signInWithPhoneNumber(this.state.phone_number)
+        .then(result => this.dispatch(createUsers(result)))
+        .then(this.props.navigation.navigate('codeverification'))
     }
 
     static navigationOptions = {
@@ -61,7 +70,7 @@ export default class registerscreen extends Component {
                             </Item>
                         </Item>
                     </View> 
-                    <Button onPress={() => this.props.navigation.navigate('codeverification')} style={{marginTop: 60, left: 140, backgroundColor: 'green'}}>
+                    <Button onPress={() => this.phoneVerification()} style={{marginTop: 60, left: 140, backgroundColor: 'green'}}>
                         <Text style={{color: 'white'}}>NEXT</Text>
                     </Button>
                     <Text style={{color:'grey', textAlign: 'center', marginTop: 10}}>Carrier SMS charges may apply</Text>
@@ -70,3 +79,9 @@ export default class registerscreen extends Component {
         );
     }
 }
+const mapStateToProps = (state) => {
+    return{
+        usertodos : state.usertodos.usertodos
+    }
+}
+export default connect(mapStateToProps)(registerscreen);

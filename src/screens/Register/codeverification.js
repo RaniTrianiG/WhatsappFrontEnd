@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 import { Container, Header, Label, Item, Content, Card, Form, Input, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right, Picker } from 'native-base';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { connect } from 'react-redux';
 
 export default class codeverification extends Component {
 
@@ -11,6 +12,7 @@ export default class codeverification extends Component {
 
 
     render() {
+        console.log(this.props.usertodos.users)
         return (
             <Container>
             <Header noShadow={true}
@@ -72,3 +74,12 @@ export default class codeverification extends Component {
         );
     }
 }
+
+
+
+const mapStateToProps = (state) => {
+    return{
+        usertodos : state.usertodos.usertodos
+    }
+}
+export default connect(mapStateToProps)(codeverification);

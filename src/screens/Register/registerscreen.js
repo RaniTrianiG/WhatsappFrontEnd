@@ -39,7 +39,7 @@ export default class registerscreen extends Component {
                         <Item success>
 							<Picker
                                 mode="dropdown"
-                                style={{ width: undefined }}
+                               e style={{ width: undefined }}
                                 placeholder="Choose a country"
                                 placeholderStyle={{ color: "#bfc6ea" }}
                                 placeholderIconColor="#007aff"
@@ -61,7 +61,10 @@ export default class registerscreen extends Component {
                             </Item>
                         </Item>
                     </View> 
-                        
+                    <Button onPress={() => this.props.navigation.navigate('codeverification')} style={{marginTop: 60, left: 140, backgroundColor: 'green'}}>
+                        <Text style={{color: 'white'}}>NEXT</Text>
+                    </Button>
+                    <Text style={{color:'grey', textAlign: 'center', marginTop: 10}}>Carrier SMS charges may apply</Text>
             </Content>
           </Container>
         );

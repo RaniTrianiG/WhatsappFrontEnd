@@ -2,19 +2,29 @@ import React, { Component } from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 import { Container, Header, Label, Item, Content, Card, Form, Input, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right, Picker } from 'native-base';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { connect } from 'react-redux'
 
-export default class registerscreen extends Component {
+import { sendVerification } from '../../../app/actions/users/users';
+import codeverification from './codeverification';
+
+class registerscreen extends Component {
 
     constructor(){
 		super();
 		this.state = {
-			selected : undefined
+            code_number: '62',
+            phone_number: '',
 		}
     }
-      onValueChange2(value) {
+
+    sendVerification(phone_number){
+        this.props.dispatch(sendVerification(phone_number))
+    }
+
+    onValueChange2(value) {
         this.setState({
-          gender: value
-        });
+            code_number: value
+        })
     }
 
     static navigationOptions = {
@@ -39,29 +49,29 @@ export default class registerscreen extends Component {
                         <Item success>
 							<Picker
                                 mode="dropdown"
-                               e style={{ width: undefined }}
+                                style={{ width: undefined }}
                                 placeholder="Choose a country"
                                 placeholderStyle={{ color: "#bfc6ea" }}
                                 placeholderIconColor="#007aff"
-                                selectedValue={this.state.selected}
+                                selectedValue={this.state.code_number}
                                 onValueChange={this.onValueChange2.bind(this)}
                             >
-                                <Picker.Item label="United States" value="United States" />
-                                <Picker.Item label="Indonesia" value="Indonesia" />
+                                <Picker.Item label="Indonesia" value='62'/>
+                                <Picker.Item label="United States" value='1'/>
                             </Picker>
                         </Item>
                         <Item success style={{borderBottomWidth: 0}}>
                             <Icon type="Entypo" name="plus"
                             style={{color:'grey'}} />
                             <Item success style={{width: 50}}>
-                              <Input  placeholder="62" />
+                              <Input disabled placeholder={this.state.code_number}/>
                             </Item>
                             <Item success style={{width: 153}}>
-                               <Input  placeholder="No. Telp" />
+                               <Input placeholder="No. Telp" onChangeText={(phone_number) => this.setState({phone_number: '+' + this.state.code_number + phone_number})} />
                             </Item>
                         </Item>
                     </View> 
-                    <Button onPress={() => this.props.navigation.navigate('codeverification')} style={{marginTop: 60, left: 140, backgroundColor: 'green'}}>
+                    <Button onPress={() => this.sendVerification(this.state.phone_number)} style={{marginTop: 60, left: 140, backgroundColor: 'green'}}>
                         <Text style={{color: 'white'}}>NEXT</Text>
                     </Button>
                     <Text style={{color:'grey', textAlign: 'center', marginTop: 10}}>Carrier SMS charges may apply</Text>
@@ -70,3 +80,9 @@ export default class registerscreen extends Component {
         );
     }
 }
+
+const mapStateToProps = (state) => ({
+    data: state.datausers
+})
+
+export default connect(mapStateToProps)(registerscreen)

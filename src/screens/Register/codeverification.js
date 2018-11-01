@@ -2,13 +2,23 @@ import React, { Component } from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 import { Container, Header, Label, Item, Content, Card, Form, Input, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right, Picker } from 'native-base';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import firebase from 'react-native-firebase';
 
 export default class codeverification extends Component {
-
-    static navigationOptions = {
-        header: null
+    constructor(){
+        super()
+        this.state = {
+            number: null
+        }
     }
 
+    static navigationOptions = {
+        header: null,
+    }
+
+    confirm(){
+        firebase.confirm(this.state.number).then(alert('clicked'))
+    }
 
     render() {
         return (
@@ -24,27 +34,7 @@ export default class codeverification extends Component {
                     Waiting for automatic SMS detection that has been sent to +62 895412955704. Incorrect number?
                     </Text>
                     <View >
-                        <Item style={{width: 20, left: 70}}>
-                            <Input />
-                        </Item>
-                        <Item style={{width: 20, left: 110, top: -51}}>
-                            <Input />
-                        </Item>
-                        <Item style={{width: 20, left: 150, top: -102}}>
-                            <Input />
-                        </Item>
-                        <Item style={{width: 20, left: 190, top: -153}}>
-                            <Input />
-                        </Item>
-                        <Item style={{width: 20, left: 230, top: -204}}>
-                            <Input />
-                        </Item>
-                        <Item style={{width: 20, left: 270, top: -255}}>
-                            <Input />
-                        </Item>
-                        <Item success style={{width:260, left: 50, top: -279}}>
-                            <Input disabled/>
-                        </Item>
+                            <Input onChangeText={(text) => this.setState({number: text})}/>
                         <Text style={{textAlign: 'center', color: 'grey', top: -265}}>Enter a 6 digits code</Text>
                     </View> 
                     <View>
@@ -63,7 +53,7 @@ export default class codeverification extends Component {
                         style={{color:'grey', textAlign: 'center', top: -325, right: 80}}>
                         Call me
                         </Text>
-                        <Button onPress={() => this.props.navigation.navigate('infoprofile')}>
+                        <Button onPress={() => this.confirm()}>
                             <Text>Just for Try</Text>
                         </Button>
                     </View>

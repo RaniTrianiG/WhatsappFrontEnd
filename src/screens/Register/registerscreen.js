@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import firebase from 'react-native-firebase';
 import { createUsers } from '../../../app/actions/users/users';
 
-export default class registerscreen extends Component {
+class registerscreen extends Component {
 
     constructor(){
 		super();

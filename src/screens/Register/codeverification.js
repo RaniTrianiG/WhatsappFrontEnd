@@ -4,7 +4,7 @@ import { Container, Header, Label, Item, Content, Card, Form, Input, CardItem, T
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { connect } from 'react-redux';
 
-export default class codeverification extends Component {
+class codeverification extends Component {
 
     static navigationOptions = {
         header: null

@@ -11,6 +11,7 @@ import infoprofile from '../../src/screens/Register/infoprofile';
 import listchatscreens from '../../src/screens/TabNavigators/listchatscreens';
 import liststatusscreens from '../../src/screens/TabNavigators/liststatuscreens';
 import listcallscreens from '../../src/screens/TabNavigators/listcallscreens';
+import ContactScreen from '../../src/screens/Contact/contactsreens';
 
 export default class Rootstack extends Component {
 
@@ -51,6 +52,7 @@ class NamingHeader extends Component{
   })
 
 const MyApp = createStackNavigator({
+  ContactScreen: ContactScreen,  
   splashscreens: splashscreens,
   registerscreen : Register,
   codeverification: codeverification,

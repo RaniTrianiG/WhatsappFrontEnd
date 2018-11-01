@@ -21,4 +21,4 @@ const datausers = function(state=initialState, action){
     }
 }
 
-export default datausers
+export default datausers;

@@ -13,7 +13,7 @@ class registerscreen extends Component {
 		super();
 		this.state = {
             code_number: '62',
-            phone_number: '',
+            phone_number: null,
 		}
     }
 

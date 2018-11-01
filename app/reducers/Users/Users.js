@@ -2,7 +2,7 @@ const initialState = {
     fetching: false,
     fetched: false,
     error: null,
-    registerNumber: ''
+    sendVerification: ''
 }
 
 const datausers = function(state=initialState, action){
@@ -11,7 +11,7 @@ const datausers = function(state=initialState, action){
             return {...state, fetching: true}
             break;
         case 'CREATE_USERS_FULFILLED':
-            return {...state, fetching: false, fetched: true, registerNumber: action.payload}
+            return {...state, fetching: false, fetched: true, sendVerification: action.payload}
             break;
         case 'CREATE_USERS_REJECTED':
             return {...state, fetching: false, error: action.payload}
@@ -21,4 +21,4 @@ const datausers = function(state=initialState, action){
     }
 }
 
-export default datausers
+export default datausers;

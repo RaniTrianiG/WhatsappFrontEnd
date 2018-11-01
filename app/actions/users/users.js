@@ -1,25 +1,9 @@
-// ini untuk deklarasi function/actions
 
-export function createUsers(data){
+import firebase from 'react-native-firebase';
+
+export function sendVerification(phone_number){
     return{
-        type:'CREATE_FETCH_TODO',
-        payload: data
+        type:'VERIFY_NUMBER',
+        payload: firebase.auth().signInWithPhoneNumber(phone_number)
     };
 }
-
-export function updateUsers(id, value){
-    return{
-        type: 'UPDATE_FETCH_TODO',
-        payload: data
-    }
-}
-
-export function deleteUsers(data){
-    return{
-        type: 'DELETE_FETCH_TODO',
-        payload: data
-
-    }
-}
-
-

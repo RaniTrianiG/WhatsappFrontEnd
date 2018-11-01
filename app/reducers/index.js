@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux';
 
-import usertodos from './Users/Users';
+
+import datausers from './Users/Users'
 
 const appReducer = combineReducers({
-    usertodos : usertodos
-});
+	datausers: datausers,
+})
 
 export default appReducer;

@@ -2,18 +2,18 @@ const initialState = {
     fetching: false,
     fetched: false,
     error: null,
-    registerNumber: ''
+    verifyNumber: {}
 }
 
 const datausers = function(state=initialState, action){
     switch(action.type) {
-        case 'CREATE_USERS_PENDING':
+        case 'VERIFY_NUMBER_PENDING':
             return {...state, fetching: true}
             break;
-        case 'CREATE_USERS_FULFILLED':
-            return {...state, fetching: false, fetched: true, registerNumber: action.payload}
+        case 'VERIFY_NUMBER_FULFILLED':
+            return {...state, fetching: false, fetched: true, verifyNumber: action.payload}
             break;
-        case 'CREATE_USERS_REJECTED':
+        case 'VERIFY_NUMBER_REJECTED':
             return {...state, fetching: false, error: action.payload}
             break;
         default: 

@@ -3,8 +3,9 @@ import { Image, StyleSheet, View } from 'react-native';
 import { Container, Header, Label, Item, Content, Card, Form, Input, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right, Picker } from 'native-base';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import firebase from 'react-native-firebase';
+import { connect } from 'react-redux';
 
-export default class codeverification extends Component {
+class codeverification extends Component {
     constructor(){
         super()
         this.state = {
@@ -16,8 +17,11 @@ export default class codeverification extends Component {
         header: null,
     }
 
-    confirm(){
-        firebase.confirm(this.state.number).then(alert('clicked'))
+    confirm(number){
+        this.props.data.verifyNumber.confirm(number)
+        // kasih if condition
+        .then(alert('Success'))
+        .catch(err => alert(err))
     }
 
     render() {
@@ -53,7 +57,7 @@ export default class codeverification extends Component {
                         style={{color:'grey', textAlign: 'center', top: -325, right: 80}}>
                         Call me
                         </Text>
-                        <Button onPress={() => this.confirm()}>
+                        <Button onPress={() => this.confirm(this.state.number)}>
                             <Text>Just for Try</Text>
                         </Button>
                     </View>
@@ -62,3 +66,9 @@ export default class codeverification extends Component {
         );
     }
 }
+
+const mapStateToProps = (state) => ({
+    data: state.datausers
+})
+
+export default connect(mapStateToProps)(codeverification)

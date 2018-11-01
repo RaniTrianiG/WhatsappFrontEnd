@@ -17,8 +17,9 @@ class registerscreen extends Component {
 		}
     }
 
-    sendVerification(phone_number){
+    nextButton(phone_number){
         this.props.dispatch(sendVerification(phone_number))
+        .then(this.props.navigation.navigate('codeverification'))
     }
 
     onValueChange2(value) {
@@ -67,11 +68,11 @@ class registerscreen extends Component {
                               <Input disabled placeholder={this.state.code_number}/>
                             </Item>
                             <Item success style={{width: 153}}>
-                               <Input placeholder="No. Telp" onChangeText={(phone_number) => this.setState({phone_number: '+' + this.state.code_number + phone_number})} />
+                               <Input placeholder="No. Telp" onChangeText={(text) => this.setState({phone_number: '+' + this.state.code_number + text})} />
                             </Item>
                         </Item>
                     </View> 
-                    <Button onPress={() => this.sendVerification(this.state.phone_number)} style={{marginTop: 60, left: 140, backgroundColor: 'green'}}>
+                    <Button onPress={() => this.nextButton(this.state.phone_number)} style={{marginTop: 60, left: 140, backgroundColor: 'green'}}>
                         <Text style={{color: 'white'}}>NEXT</Text>
                     </Button>
                     <Text style={{color:'grey', textAlign: 'center', marginTop: 10}}>Carrier SMS charges may apply</Text>

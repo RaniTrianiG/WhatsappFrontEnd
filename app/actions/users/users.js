@@ -1,3 +1,4 @@
+
 import firebase from 'react-native-firebase';
 
 export function sendVerification(phone_number){

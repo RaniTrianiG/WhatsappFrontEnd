@@ -57,6 +57,7 @@
 		F73A99F81F4B427E97A62B72 /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F4A3A2C842E8473D99255DF7 /* FontAwesome5_Brands.ttf */; };
 		3D0C9E5E6EDF49689CF50BE6 /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F49862433D8649618BCA96B7 /* FontAwesome5_Regular.ttf */; };
 		0B102240B29A4A959F71B8E1 /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 57CCC0240A874983A5DBF26A /* FontAwesome5_Solid.ttf */; };
+
 		14060202D1A840CFACBF9344 /* libRNFirebase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 335CDA832644445B9DC54403 /* libRNFirebase.a */; };
 		5D2061503C1240DEAFC75A24 /* libRCTContacts.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EB8F47F90161473996F7EE4C /* libRCTContacts.a */; };
 /* End PBXBuildFile section */
@@ -385,10 +386,12 @@
 		F4A3A2C842E8473D99255DF7 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; name = "FontAwesome5_Brands.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		F49862433D8649618BCA96B7 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; name = "FontAwesome5_Regular.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		57CCC0240A874983A5DBF26A /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; name = "FontAwesome5_Solid.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+
 		0412291D94724C57A47983AD /* RNFirebase.xcodeproj */ = {isa = PBXFileReference; name = "RNFirebase.xcodeproj"; path = "../node_modules/react-native-firebase/ios/RNFirebase.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		335CDA832644445B9DC54403 /* libRNFirebase.a */ = {isa = PBXFileReference; name = "libRNFirebase.a"; path = "libRNFirebase.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		4E9E341971984A3AAF8EA586 /* RCTContacts.xcodeproj */ = {isa = PBXFileReference; name = "RCTContacts.xcodeproj"; path = "../node_modules/react-native-contacts/ios/RCTContacts.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		EB8F47F90161473996F7EE4C /* libRCTContacts.a */ = {isa = PBXFileReference; name = "libRCTContacts.a"; path = "libRCTContacts.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -417,6 +420,7 @@
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				3AC47C7564464D2D99525F28 /* libRNVectorIcons.a in Frameworks */,
+
 				14060202D1A840CFACBF9344 /* libRNFirebase.a in Frameworks */,
 				5D2061503C1240DEAFC75A24 /* libRCTContacts.a in Frameworks */,
 			);
@@ -607,6 +611,7 @@
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				3FA51F1F15CA4BAB9D937534 /* RNVectorIcons.xcodeproj */,
+
 				0412291D94724C57A47983AD /* RNFirebase.xcodeproj */,
 				4E9E341971984A3AAF8EA586 /* RCTContacts.xcodeproj */,
 			);
@@ -678,6 +683,17 @@
 				F4A3A2C842E8473D99255DF7 /* FontAwesome5_Brands.ttf */,
 				F49862433D8649618BCA96B7 /* FontAwesome5_Regular.ttf */,
 				57CCC0240A874983A5DBF26A /* FontAwesome5_Solid.ttf */,
+				BBD6E7BB208E404AAA1CD7FA /* Entypo.ttf */,
+				F4177EA5F55D4BCD82B7E579 /* EvilIcons.ttf */,
+				D86C5E4D9B494476A10B667E /* Feather.ttf */,
+				6E80FA4448C1404590809601 /* FontAwesome.ttf */,
+				5CDE4FCEA2CB4918B30756BD /* Foundation.ttf */,
+				362D7B3DCC7647F4B05D4C6F /* Ionicons.ttf */,
+				D9A69212D37247BDABDB4494 /* MaterialCommunityIcons.ttf */,
+				C85E3437E76D445694605E02 /* MaterialIcons.ttf */,
+				89F949723D77489D9A0AB008 /* Octicons.ttf */,
+				D4C515DE7C0E49A3B635439E /* SimpleLineIcons.ttf */,
+				AADAF3BF0E5448E4923CC317 /* Zocial.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1147,6 +1163,17 @@
 				F73A99F81F4B427E97A62B72 /* FontAwesome5_Brands.ttf in Resources */,
 				3D0C9E5E6EDF49689CF50BE6 /* FontAwesome5_Regular.ttf in Resources */,
 				0B102240B29A4A959F71B8E1 /* FontAwesome5_Solid.ttf in Resources */,
+				A4C5E6130EF2450DBCABBD7E /* Entypo.ttf in Resources */,
+				2E313C11B96246ACA585A6D3 /* EvilIcons.ttf in Resources */,
+				EA911C241504400CA8BFE93D /* Feather.ttf in Resources */,
+				48065A93CFE04446A8EB7ABA /* FontAwesome.ttf in Resources */,
+				5B0F521FFAD9429A89C21AB2 /* Foundation.ttf in Resources */,
+				74C97C3DD3FA453EB1496F0F /* Ionicons.ttf in Resources */,
+				583808453BE745B0B7EC0649 /* MaterialCommunityIcons.ttf in Resources */,
+				33C70F9A538F49A298F14575 /* MaterialIcons.ttf in Resources */,
+				F1950DF784F34BBDAA643281 /* Octicons.ttf in Resources */,
+				43DA04310B89464CB81B4B79 /* SimpleLineIcons.ttf in Resources */,
+				3EAF1C2AB9C74598879BFE8B /* Zocial.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1284,11 +1311,13 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
+
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 					"$(SRCROOT)/../node_modules/react-native-contacts/ios/RCTContacts",
 				);
@@ -1315,13 +1344,18 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+
+
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
+
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 					"$(SRCROOT)/../node_modules/react-native-contacts/ios/RCTContacts",
+
 				);
 			};
 			name = Release;
@@ -1345,8 +1379,10 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
+
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 					"$(SRCROOT)/../node_modules/react-native-contacts/ios/RCTContacts",
+
 				);
 			};
 			name = Debug;
@@ -1369,6 +1405,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
+
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 					"$(SRCROOT)/../node_modules/react-native-contacts/ios/RCTContacts",
 				);
@@ -1403,11 +1440,14 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
+
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 					"$(SRCROOT)/../node_modules/react-native-contacts/ios/RCTContacts",
 				);
@@ -1442,13 +1482,17 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
+
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 					"$(SRCROOT)/../node_modules/react-native-contacts/ios/RCTContacts",
+
 				);
 			};
 			name = Release;
@@ -1480,11 +1524,14 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
+
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 					"$(SRCROOT)/../node_modules/react-native-contacts/ios/RCTContacts",
 				);
@@ -1518,11 +1565,14 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
+
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 					"$(SRCROOT)/../node_modules/react-native-contacts/ios/RCTContacts",
 				);

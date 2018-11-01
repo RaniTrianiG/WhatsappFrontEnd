@@ -28,7 +28,7 @@ class NamingHeader extends Component{
       <View style={{top:20}}>
         <Text style={{color:'white', fontWeight: 'bold', left: 10, fontSize: 17, top: 10}}>WhatsApp</Text>
         <Icon name="ios-search" style={{color: 'white', left: 290, top:-10, fontSize: 25}} />
-        <Icon type="Entypo" name="dots-three-vertical" style={{color: 'white', left: 320, top:-32, fontSize: 20}}/>
+        <Icon type="Entypo" name="dots-three-vertical" style={{color: 'white', left: 320, top:-32 , fontSize: 20}}/>
       </View>
     )
   }

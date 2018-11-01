@@ -25,6 +25,7 @@ class codeverification extends Component {
     }
 
     render() {
+        console.log(this.props.usertodos.users)
         return (
             <Container>
             <Header noShadow={true}
@@ -67,8 +68,10 @@ class codeverification extends Component {
     }
 }
 
+
 const mapStateToProps = (state) => ({
     data: state.datausers
 })
 
 export default connect(mapStateToProps)(codeverification)
+

@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 import { Container, Header, Label, Item, Content, Card, Form, Input, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right, Picker } from 'native-base';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+
 import { connect } from 'react-redux'
+
 
 import { sendVerification } from '../../../app/actions/users/users';
 import codeverification from './codeverification';
@@ -12,6 +14,7 @@ class registerscreen extends Component {
     constructor(){
 		super();
 		this.state = {
+
             code_number: '62',
             phone_number: null,
 		}
@@ -26,6 +29,11 @@ class registerscreen extends Component {
         this.setState({
             code_number: value
         })
+    }
+    phoneVerification(){
+        firebase.auth().signInWithPhoneNumber(this.state.phone_number)
+        .then(result => this.dispatch(createUsers(result)))
+        .then(this.props.navigation.navigate('codeverification'))
     }
 
     static navigationOptions = {
@@ -72,7 +80,9 @@ class registerscreen extends Component {
                             </Item>
                         </Item>
                     </View> 
+
                     <Button onPress={() => this.nextButton(this.state.phone_number)} style={{marginTop: 60, left: 140, backgroundColor: 'green'}}>
+
                         <Text style={{color: 'white'}}>NEXT</Text>
                     </Button>
                     <Text style={{color:'grey', textAlign: 'center', marginTop: 10}}>Carrier SMS charges may apply</Text>
@@ -81,6 +91,7 @@ class registerscreen extends Component {
         );
     }
 }
+
 
 const mapStateToProps = (state) => ({
     data: state.datausers

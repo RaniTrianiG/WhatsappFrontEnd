@@ -2,6 +2,7 @@ const initialState = {
     fetching: false,
     fetched: false,
     error: null,
+
     verifyNumber: {}
 }
 

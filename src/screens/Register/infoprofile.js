@@ -3,6 +3,7 @@ import { Image, StyleSheet, View } from 'react-native';
 import { Container, Header, Label, Item, Content, Card, Form, Input, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right, Picker } from 'native-base';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { createUsers } from '../../../app/actions/users/users';
+import { connect } from 'react-redux';
 
 export default class infoprofile extends Component {
 

@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { Image, StyleSheet, View } from 'react-native';
-import { Container, Header, Label, Item, Content, Card, Form, Input, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right, Picker } from 'native-base';
+import { Container, Header, Label, Item, Content, Spinner, Card, Form, Input, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right, Picker } from 'native-base';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import firebase from 'react-native-firebase';
 import infoprofile from './infoprofile';
 import { connect } from 'react-redux';
-
 
 class codeverification extends Component {
 
@@ -29,6 +28,11 @@ class codeverification extends Component {
 
 
     render() {
+        if(this.props.data.fetching === true){
+            return(
+                <Spinner />
+            )
+        }
         return (
             <Container>
             <Header noShadow={true}

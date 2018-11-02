@@ -5,7 +5,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { createUsers } from '../../../app/actions/users/users';
 import { connect } from 'react-redux';
 
-export default class infoprofile extends Component {
+class infoprofile extends Component {
 
     static navigationOptions = {
         header: null
@@ -45,7 +45,7 @@ export default class infoprofile extends Component {
                          type="MaterialCommunityIcons" name="emoticon-happy" />
                     </View> 
                     <View style={{paddingTop: 350, left: 150}}>
-                        <Button onPress={() => this.createDataUser('08956654334', 'RaniTG', 'http://rani.com')}>
+                        <Button onPress={() => this.createDataUser(this.props.data.verifyNumber._auth._user._user.phoneNumber, 'nama', 'url')}>
                             <Text>Next</Text>
                         </Button>
                     </View>
@@ -54,3 +54,9 @@ export default class infoprofile extends Component {
         );
     }
 }
+
+const mapStateToProps = (state) => ({
+    data: state.datausers
+})
+
+export default connect(mapStateToProps)(infoprofile)

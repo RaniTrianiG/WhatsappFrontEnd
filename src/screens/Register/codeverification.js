@@ -2,9 +2,26 @@ import React, { Component } from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 import { Container, Header, Label, Item, Content, Card, Form, Input, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right, Picker } from 'native-base';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import firebase from 'react-native-firebase';
+import infoprofile from './infoprofile';
 import { connect } from 'react-redux';
 
+
 class codeverification extends Component {
+
+    constructor(){
+        super()
+        this.state = {
+            number: null,
+            verifyNumber: null
+        }
+    }
+
+    confirm(number){
+        this.props.data.verifyNumber.confirm(number)
+        .then(() => this.props.navigation.navigate('infoprofile'))
+        .catch(err => alert(err))
+    }
 
     static navigationOptions = {
         header: null
@@ -12,12 +29,11 @@ class codeverification extends Component {
 
 
     render() {
-        console.log(this.props.usertodos.users)
         return (
             <Container>
             <Header noShadow={true}
             style={{backgroundColor: 'white'}}>
-              <Text style={{color: '#1F6E43', top: 20, fontWeight:'bold'}}>Verification +62 895412955704</Text>
+              <Text style={{color: '#1F6E43', top: 20, fontWeight:'bold'}}>Verification {this.props.data.verifyNumber.phoneNumber}</Text>
               <FontAwesome 
               style={{color: 'grey', fontWeight: 'bold', left: 40, top: 22, fontSize: 20}} name="ellipsis-v"/>
             </Header>
@@ -25,31 +41,16 @@ class codeverification extends Component {
                     <Text style={{textAlign: 'center', marginTop: 10, paddingRight: 15, paddingLeft: 15}}>
                     Waiting for automatic SMS detection that has been sent to +62 895412955704. Incorrect number?
                     </Text>
-                    <View >
-                        <Item style={{width: 20, left: 70}}>
-                            <Input />
+                     <View style={{top: 280}}>
+                        <Item success style={{width:150, left: 80, top: -260}}>
+                            <Input keyboardType="phone-pad" onChangeText={(text) => this.setState({number: text})}/>
                         </Item>
-                        <Item style={{width: 20, left: 110, top: -51}}>
-                            <Input />
-                        </Item>
-                        <Item style={{width: 20, left: 150, top: -102}}>
-                            <Input />
-                        </Item>
-                        <Item style={{width: 20, left: 190, top: -153}}>
-                            <Input />
-                        </Item>
-                        <Item style={{width: 20, left: 230, top: -204}}>
-                            <Input />
-                        </Item>
-                        <Item style={{width: 20, left: 270, top: -255}}>
-                            <Input />
-                        </Item>
-                        <Item success style={{width:260, left: 50, top: -279}}>
-                            <Input disabled/>
-                        </Item>
+                        <Button onPress={() => this.confirm(this.state.number)} style={{left: 250, top: -300, backgroundColor:'green'}}>
+                                <Text style={{textAlign: 'center'}}>OK</Text>
+                            </Button>
                         <Text style={{textAlign: 'center', color: 'grey', top: -265}}>Enter a 6 digits code</Text>
                     </View> 
-                    <View>
+                    <View style={{top: 300}}>
                         <Icon type="Entypo" name="typing"
                                 style={{color:'grey', left: 30, top: -250}} />
                         <Text 
@@ -65,9 +66,6 @@ class codeverification extends Component {
                         style={{color:'grey', textAlign: 'center', top: -325, right: 80}}>
                         Call me
                         </Text>
-                        <Button onPress={() => this.props.navigation.navigate('infoprofile')}>
-                            <Text>Just for Try</Text>
-                        </Button>
                     </View>
             </Content>
           </Container>
@@ -76,10 +74,9 @@ class codeverification extends Component {
 }
 
 
+const mapStateToProps = (state) => ({
+    data: state.datausers
+})
 
-const mapStateToProps = (state) => {
-    return{
-        usertodos : state.usertodos.usertodos
-    }
-}
-export default connect(mapStateToProps)(codeverification);
+export default connect(mapStateToProps)(codeverification)
+

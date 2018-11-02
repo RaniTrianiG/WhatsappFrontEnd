@@ -2,11 +2,22 @@ import React, { Component } from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 import { Container, Header, Label, Item, Content, Card, Form, Input, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right, Picker } from 'native-base';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { createUsers } from '../../../app/actions/users/users';
 
 export default class infoprofile extends Component {
 
     static navigationOptions = {
         header: null
+    }
+
+    createDataUser(phone, name, pictureURL){
+    this.props.dispatch(createUsers({
+        phone_number:phone,
+        name: name,
+        profile_picture_url: pictureURL
+    }))
+
+    .then(() => this.props.navigation.navigate('home'))
     }
 
 
@@ -33,7 +44,7 @@ export default class infoprofile extends Component {
                          type="MaterialCommunityIcons" name="emoticon-happy" />
                     </View> 
                     <View style={{paddingTop: 350, left: 150}}>
-                        <Button onPress={() => this.props.navigation.navigate('home')} style={{backgroundColor: 'green'}}>
+                        <Button onPress={() => this.createDataUser('08956654334', 'RaniTG', 'http://rani.com')}>
                             <Text>Next</Text>
                         </Button>
                     </View>

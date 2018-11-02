@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
-import { Container, Header, Content, Card, CardItem, Thumbnail, Title, Button, Icon, Left, Right, Body} from 'native-base';
+import { Container, Header, Content, Card, CardItem, Fab, Thumbnail, Title, Button, Icon, Left, Right, Body} from 'native-base';
 
 export default class listchatscreens extends Component{
 
@@ -14,6 +14,10 @@ export default class listchatscreens extends Component{
                         }}>
                         <Text>Ini Chat List</Text>
                     </Content>
+                    <Fab style={{ backgroundColor: 'green' }}
+                        onPress={() => this.props.navigation.navigate('ContactScreen')}>
+                    <Icon type="MaterialIcons" name="message" style={{ backgroundColor: 'green' }}/>
+                    </Fab>
                 {/*
                 <Image
                 source={require('../images/todo.png')}

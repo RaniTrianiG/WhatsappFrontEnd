@@ -61,7 +61,7 @@ class ChatScreen extends Component {
             </Left>
                 <Text style={{fontSize: 17, color: 'white', fontWeight:'bold', right: 60, top: 10}}>NamaChannel</Text>
                 <Text style={{fontSize: 12, color: 'white', top: 35, right: 165}}>NamaUser</Text>
-            <Icon style={{color: 'white', left: 80, top: 20, fontSize: 20}} type="FontAwesome" name="ellipsis-v"/>
+            <Icon style={{color: 'white', left: 30, top: 20, fontSize: 20}} type="FontAwesome" name="ellipsis-v"/>
         </Header>
         <Content>
         {this.state.messages.map((data, index)=>{
@@ -76,13 +76,16 @@ class ChatScreen extends Component {
         </Content>
         <View style={{backgroundColor: 'white'}}>
         <Item rounded style={{width:280}}>
+            <Icon style={{flexDirection: 'row', color:'grey'}} type="MaterialCommunityIcons" name="emoticon-happy" size={20} color="#000"/>
           <Input 
             value={this.state.message}
             onChangeText={data => this.setState({ message: data })}
-            
-            placeholder="type message.." />
+            placeholder="type message..." 
+            />
+            <Icon style={{flexDirection: 'row', left: 130, color:'grey'}} type="FontAwesome" name="paperclip" size={20} color="#000"/>
+            <Icon style={{flexDirection: 'row', paddingLeft: 140, color:'grey', fontSize: 20}} type="FontAwesome" name="camera" size={20} color="#000"/>
           <Button rounded
-            style={{backgroundColor: '#00635A', top:2, left:65}}
+            style={{backgroundColor: '#00635A', top:2, left:25}}
             onPress={this.sendMessage}>
                 <Icon type="Entypo" name="mic" style={{color:'white'}}/>
           </Button>

@@ -52,8 +52,8 @@ class NamingHeader extends Component{
   })
 
 const MyApp = createStackNavigator({
-  ContactScreen: ContactScreen,  
   splashscreens: splashscreens,
+  ContactScreen: ContactScreen,  
   registerscreen : Register,
   codeverification: codeverification,
   infoprofile: infoprofile,

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Image, StyleSheet, View } from 'react-native';
-import { Container, Header, Label, Item, Content, Card, Form, Input, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right, Picker } from 'native-base';
+import { Container, Header, Label, Item, Spinner, Content, Card, Form, Input, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right, Picker } from 'native-base';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import firebase from 'react-native-firebase';
 import { connect } from 'react-redux';
@@ -9,7 +9,7 @@ class codeverification extends Component {
     constructor(){
         super()
         this.state = {
-            number: null
+            number: ''
         }
     }
 
@@ -19,29 +19,37 @@ class codeverification extends Component {
 
     confirm(number){
         this.props.data.verifyNumber.confirm(number)
-        // kasih if condition
-        .then(alert('Success'))
+        .then(() => this.props.navigation.navigate('infoprofile'))
         .catch(err => alert(err))
     }
 
     render() {
+        if(this.props.data.fetching === true){
+            return(
+                <Spinner />
+            )
+        }
+
         return (
             <Container>
             <Header noShadow={true}
             style={{backgroundColor: 'white'}}>
-              <Text style={{color: '#1F6E43', top: 20, fontWeight:'bold'}}>Verification +62 895412955704</Text>
+              <Text style={{color: '#1F6E43', top: 20, fontWeight:'bold'}}>Verification {this.props.data.verifyNumber._auth._user._user.phoneNumber}</Text>
               <FontAwesome 
               style={{color: 'grey', fontWeight: 'bold', left: 40, top: 22, fontSize: 20}} name="ellipsis-v"/>
             </Header>
             <Content>
                     <Text style={{textAlign: 'center', marginTop: 10, paddingRight: 15, paddingLeft: 15}}>
-                    Waiting for automatic SMS detection that has been sent to +62 895412955704. Incorrect number?
+                    Waiting for automatic SMS detection that has been sent to {this.props.data.verifyNumber._auth._user._user.phoneNumber}. Incorrect number?
                     </Text>
                     <View >
-                            <Input onChangeText={(text) => this.setState({number: text})}/>
-                        <Text style={{textAlign: 'center', color: 'grey', top: -265}}>Enter a 6 digits code</Text>
+                    <Input maxLength={6} keyboardType="phone-pad" onChangeText={(text) => this.setState({number: text})}/>
+                    <Text style={{textAlign: 'center', color: 'grey', top: -265}}>Enter a 6 digits code</Text>
                     </View> 
-                    <View>
+                    <Button disabled={this.state.number.length !== 6? true : false} onPress={() => this.confirm(this.state.number)}>
+                        <Text style={{textAlign: 'center'}}>OK</Text>
+                    </Button>
+                    <View style={{top: 300}}>
                         <Icon type="Entypo" name="typing"
                                 style={{color:'grey', left: 30, top: -250}} />
                         <Text 
@@ -57,9 +65,6 @@ class codeverification extends Component {
                         style={{color:'grey', textAlign: 'center', top: -325, right: 80}}>
                         Call me
                         </Text>
-                        <Button onPress={() => this.confirm(this.state.number)}>
-                            <Text>Just for Try</Text>
-                        </Button>
                     </View>
             </Content>
           </Container>

@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { Image, StyleSheet, View } from 'react-native';
-import { Container, Header, Label, Item, Content, Card, Form, Input, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right, Picker } from 'native-base';
+import { Container, Spinner, Header, Label, Item, Content, Card, Form, Input, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right, Picker } from 'native-base';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { connect } from 'react-redux'
 
 import { sendVerification } from '../../../app/actions/users/users';
-import codeverification from './codeverification';
 
 class registerscreen extends Component {
 
@@ -34,6 +33,12 @@ class registerscreen extends Component {
 
 
     render() {
+        if(this.props.data.fetching === true){
+            return(
+                <Spinner />
+            )
+        }
+
         return (
             <Container>
             <Header noShadow={true}
@@ -68,7 +73,7 @@ class registerscreen extends Component {
                               <Input disabled placeholder={this.state.code_number}/>
                             </Item>
                             <Item success style={{width: 153}}>
-                               <Input placeholder="No. Telp" onChangeText={(text) => this.setState({phone_number: '+' + this.state.code_number + text})} />
+                               <Input placeholder="No. Telp" keyboardType="phone-pad" onChangeText={(text) => this.setState({phone_number: '+' + this.state.code_number + text})} />
                             </Item>
                         </Item>
                     </View> 

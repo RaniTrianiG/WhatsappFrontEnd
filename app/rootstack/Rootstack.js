@@ -53,12 +53,12 @@ class NamingHeader extends Component{
   })
 
 const MyApp = createStackNavigator({ 
-  ChatScreen: ChatScreen,
   splashscreens: splashscreens,
   registerscreen : Register,
   codeverification: codeverification,
   infoprofile: infoprofile,
   listchatscreens: listchatscreens,
+  ChatScreen: ChatScreen,
   ContactScreen: ContactScreen, 
   home: {
     screen: MyTab,

@@ -3,6 +3,7 @@ const initialState = {
     fetched: false,
     error: null,
     users: [],
+    token: '',
 
     verifyNumber: {}
     //phone_number: {}
@@ -23,7 +24,7 @@ const datausers = function(state=initialState, action){
            return {...state, fetching: true};
            break;
        case 'CREATE_USER_FULFILLED' :
-            return {...state, fetching: false, fetched: true, users : [...state.users, action.payload.data]};
+            return {...state, fetching: false, fetched: true, users : [...state.users, action.payload.data], token : action.payload2.data};
             break;
        case 'CREATE_USER_REJECTED' :
            return {...state, error: action.payload};

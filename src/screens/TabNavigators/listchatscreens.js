@@ -1,39 +1,64 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
-import { Container, Header, Content, Card, CardItem, Fab, Thumbnail, Title, Button, Icon, Left, Right, Body} from 'native-base';
+import {View, Text, StyleSheet, Image, FlatList, Alert} from 'react-native';
+import {Icon, Button, Container, ListItem, Header, Content, Left, Title, Right, Card, CardItem, Fab, Thumbnail, Body, Item, Input, List} from 'native-base';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import {connect} from 'react-redux';
+import { fetchChatList } from '../../../app/actions/channels/channels';
 
-export default class listchatscreens extends Component{
+class listchatscreens extends Component{
 
-    render(){
-        return(
-            <Container>
-                    <Content contentContainerStyle={{
-                        flex: 1,
-                        alignItems: 'center',
-                        backgroundColor: 'white'
-                        }}>
-                        <Text>Ini Chat List</Text>
-                    </Content>
-                    <Fab style={{ backgroundColor: 'green' }}
+    constructor(props) {
+        super(props);
+        this.state = {
+            val:''
+          }
+        }
+    
+        componentDidMount() { 
+            this.props.dispatch(fetchChatList());
+        }
+    
+        handleNavigate = (item) => {
+            this.props.navigation.push('ChatScreen',item );
+        }
+
+        _keyExtractor = ({id}, index) => id.toString();
+    
+        renderItem = ({item, index}) => (
+        <List>
+            <ListItem thumbnail onPress={() => this.handleNavigate(item)}>
+                <Left>
+                    <Thumbnail source={require('../../img/rani.jpg')} />
+                </Left>
+                <Body style={{paddingRight:20}}>
+                    <Text style={{fontWeight:'bold'}}>{item.name}</Text>
+                    <Text note>{item.message}</Text>
+                </Body>
+            </ListItem>
+        </List>
+     );
+    
+      render() {
+        return (
+          <Container>
+            <Content>
+                  <FlatList
+                        data={this.props.channelusers.channels}
+                        keyExtractor={this._keyExtractor}
+                        renderItem={this.renderItem}
+                    />
+            </Content>
+            <Fab style={{ backgroundColor: '#00635A' }}
                         onPress={() => this.props.navigation.navigate('ContactScreen')}>
-                    <Icon type="MaterialIcons" name="message" style={{ backgroundColor: 'green' }}/>
-                    </Fab>
-                {/*
-                <Image
-                source={require('../images/todo.png')}
-                />
-                    <Button bordered dark style={{width:170, height: 70, top:20, left: 5}}>
-                    <Text style={{color:'#BFEF89', left: 40}}>USER TRENDS</Text>
-                    </Button>
-                    <Button bordered dark style={{width:170, height:70, left: 185, top: -50}}>
-                    <Text style={{left:40, color:'#BFEF89'}}>USER TYPES</Text>
-                    </Button>
-                    <Text style={{fontSize:50, color:'white', right:90, top: -40}}>465</Text>
-                    <Text style={{fontSize:50, color:'white', top: -105, left: 100}}>45 %</Text>
-                    <Text style={{top:-120, color:'white', right:88}}>Daily Views</Text>
-                    <Text style={{top:-138, color:'white', left:90}}>User Increase</Text>
-                </Content> */}
-      </Container>
+                    <Icon type="MaterialIcons" name="message" style={{ backgroundColor: '#00635A' }}/>
+            </Fab>
+          </Container>
         )
+      }
     }
-}
+    const mapStateToProps = (state) => ({
+            channelusers : state.channelusers
+
+    })
+    export default connect(mapStateToProps)(listchatscreens);
+    

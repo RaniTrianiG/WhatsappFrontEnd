@@ -72,8 +72,10 @@ class codeverification extends Component {
     }
 }
 
+
 const mapStateToProps = (state) => ({
     data: state.datausers
 })
 
 export default connect(mapStateToProps)(codeverification)
+

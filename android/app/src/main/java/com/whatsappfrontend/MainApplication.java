@@ -6,6 +6,7 @@ import com.facebook.react.ReactApplication;
 import com.rnfs.RNFSPackage;
 import com.imagepicker.ImagePickerPackage;
 import com.rt2zz.reactnativecontacts.ReactNativeContacts;
+
 import io.invertase.firebase.RNFirebasePackage;
 import io.invertase.firebase.auth.RNFirebaseAuthPackage;
 import io.invertase.firebase.storage.RNFirebaseStoragePackage;

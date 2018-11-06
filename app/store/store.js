@@ -1,4 +1,5 @@
 import { createStore, applyMiddleware } from 'redux';
+
 import thunk from 'redux-thunk';
 import promise from 'redux-promise-middleware';
 import { logger } from 'redux-logger'
@@ -10,3 +11,4 @@ const middleware = applyMiddleware(logger, thunk, promise());
 const store = createStore(appReducer, middleware);
 
 export default store;
+

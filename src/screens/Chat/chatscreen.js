@@ -4,11 +4,20 @@ import { FlatList } from 'react-native'
 import SocketIOClient from 'socket.io-client'
 import axios from 'axios'
 
-class ChatScreen extends Component {
 
-  static navigationOptions = {
-      header: null,
-  }  
+class NamingHeader extends Component{
+  render(){
+    return(
+      <View style={{top:20}}>
+        <Text style={{color:'white', fontWeight: 'bold', left: 10, fontSize: 17, top: -10}}>NameChannel</Text>
+        <Icon type="Entypo" name="dots-three-vertical" style={{color: 'white', top:-32 , fontSize: 20, left: 270}}/>
+      </View>
+    )
+  }
+}
+
+export default class ChatScreen extends Component {
+
   constructor() {
     super()
     this.state = {
@@ -51,18 +60,19 @@ class ChatScreen extends Component {
         this.setState({ messages: chat })
       })
   }
+
+  static navigationOptions = {
+    headerTintColor: 'white',
+    headerStyle: {
+      backgroundColor: '#00635A',
+      elevation: 0
+    },
+    headerTitle: <NamingHeader />
+  }
+
   render() {
     return (
       <Container>
-        <Header 
-        style={{backgroundColor: '#00635A'}}>
-            <Left>
-                <Icon />
-            </Left>
-                <Text style={{fontSize: 17, color: 'white', fontWeight:'bold', right: 60, top: 10}}>NamaChannel</Text>
-                <Text style={{fontSize: 12, color: 'white', top: 35, right: 165}}>NamaUser</Text>
-            <Icon style={{color: 'white', left: 30, top: 20, fontSize: 20}} type="FontAwesome" name="ellipsis-v"/>
-        </Header>
         <Content>
         {this.state.messages.map((data, index)=>{
             return(
@@ -82,12 +92,10 @@ class ChatScreen extends Component {
             onChangeText={data => this.setState({ message: data })}
             placeholder="type message..." 
             />
-            <Icon style={{flexDirection: 'row', left: 130, color:'grey'}} type="FontAwesome" name="paperclip" size={20} color="#000"/>
-            <Icon style={{flexDirection: 'row', paddingLeft: 140, color:'grey', fontSize: 20}} type="FontAwesome" name="camera" size={20} color="#000"/>
           <Button rounded
-            style={{backgroundColor: '#00635A', top:2, left:25}}
+            style={{backgroundColor: '#00635A', top:2, left:70}}
             onPress={this.sendMessage}>
-                <Icon type="Entypo" name="mic" style={{color:'white'}}/>
+                <Icon type="Entypo" name="paper-plane" style={{color:'white'}}/>
           </Button>
         </Item>
         </View>
@@ -96,4 +104,4 @@ class ChatScreen extends Component {
   }
 }
 
-export default ChatScreen;
+

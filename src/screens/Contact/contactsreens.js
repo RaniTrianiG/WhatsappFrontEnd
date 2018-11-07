@@ -55,7 +55,7 @@ class ContactScreen extends Component {
                             <Text>New Group</Text>
                         </Body>
                     </ListItem>
-                    <ListItem avatar>
+                    <ListItem avatar onPress={() => this.props.navigation.navigate('Addcontacts')}>
                         <Left>
                             <Thumbnail source={require('../../img/new-contact.png')} style={{ height: 40, width: 40 }}/>
                         </Left>

@@ -12,6 +12,7 @@ import listchatscreens from '../../src/screens/TabNavigators/listchatscreens';
 import liststatusscreens from '../../src/screens/TabNavigators/liststatuscreens';
 import listcallscreens from '../../src/screens/TabNavigators/listcallscreens';
 import ContactScreen from '../../src/screens/Contact/contactsreens';
+import Addcontacts from '../../src/screens/Contact/addcontacts';
 import ChatScreen from '../../src/screens/Chat/chatscreen';
 
 export default class Rootstack extends Component {
@@ -53,13 +54,6 @@ class NamingHeader extends Component{
   })
 
 const MyApp = createStackNavigator({ 
-  splashscreens: splashscreens,
-  registerscreen : Register,
-  codeverification: codeverification,
-  infoprofile: infoprofile,
-  listchatscreens: listchatscreens,
-  ChatScreen: ChatScreen,
-  ContactScreen: ContactScreen, 
   home: {
     screen: MyTab,
     navigationOptions: {
@@ -70,6 +64,14 @@ const MyApp = createStackNavigator({
       },
       headerTitle: <NamingHeader />
     }
-  }
+  },
+  Addcontacts: Addcontacts,
+  splashscreens: splashscreens,
+  registerscreen : Register,
+  codeverification: codeverification,
+  infoprofile: infoprofile,
+  listchatscreens: listchatscreens,
+  ChatScreen: ChatScreen,
+  ContactScreen: ContactScreen, 
 });
 

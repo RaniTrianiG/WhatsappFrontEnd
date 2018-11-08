@@ -5,7 +5,6 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 import { connect } from 'react-redux'
 
-
 import { sendVerification } from '../../../app/actions/users/users';
 
 class registerscreen extends Component {

@@ -1,12 +1,20 @@
 import React, { Component } from 'react';
-import { Image, StyleSheet, View } from 'react-native';
+import { Image, StyleSheet, View, AsyncStorage } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right } from 'native-base';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 export default class splashscreen extends Component {
-
+    constructor(){
+        super()
+    }
   static navigationOptions = {
     header: null
+  }
+
+  async componentWillMount(){
+    AsyncStorage.getItem('TOKEN')
+    .then((res) => res? this.props.navigation.navigate('home') : null)
+    .catch(err => alert('Error: ' + err))
   }
 
   render() {

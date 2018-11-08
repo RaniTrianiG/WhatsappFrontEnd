@@ -3,7 +3,6 @@ import {Platform, View, Text, Image, StyleSheet} from 'react-native';
 import {createStackNavigator, createTabNavigator} from 'react-navigation';
 import {Container, Content, Header, Body,Right, Left, Icon, Thumbnail} from 'native-base';
 
-
 import splashscreens from '../../src/screens/Splash/splashscreen';
 import Register from '../../src/screens/Register/registerscreen';
 import codeverification from '../../src/screens/Register/codeverification';
@@ -12,15 +11,17 @@ import listchatscreens from '../../src/screens/TabNavigators/listchatscreens';
 import liststatusscreens from '../../src/screens/TabNavigators/liststatuscreens';
 import listcallscreens from '../../src/screens/TabNavigators/listcallscreens';
 import ContactScreen from '../../src/screens/Contact/contactsreens';
+import ChatScreen from '../../src/screens/Chat/chatscreen';
 
 export default class Rootstack extends Component {
 
-    render() {
-      return (
-        <MyApp />
-      );
-    }
+
+render() {
+  return (
+    <MyApp />
+    );
   }
+}
 
 class NamingHeader extends Component{
   render(){
@@ -34,30 +35,32 @@ class NamingHeader extends Component{
   }
 }
 
-  const MyTab = createTabNavigator({
-    Chat: listchatscreens,
-    Status: liststatusscreens,
-    Calls: listcallscreens
-  }, {
-    tabBarOptions: {
-      inactiveTintColor: '#AACBC8',
-      style: {
-        backgroundColor: '#00635A',
-        fontWeight: 'bold'
-      },
-      indicatorStyle: {
-        backgroundColor: 'white'
-      }
+const MyTab = createTabNavigator({
+  Chat: listchatscreens,
+  Status: liststatusscreens,
+  Calls: listcallscreens
+}, {
+  tabBarOptions: {
+    inactiveTintColor: '#AACBC8',
+    style: {
+      backgroundColor: '#00635A',
+      fontWeight: 'bold'
+    },
+    indicatorStyle: {
+      backgroundColor: 'white'
     }
-  })
+  }
+})
 
-const MyApp = createStackNavigator({
+const MyApp = createStackNavigator({ 
   splashscreens: splashscreens,
   ContactScreen: ContactScreen,  
   registerscreen : Register,
   codeverification: codeverification,
   infoprofile: infoprofile,
   listchatscreens: listchatscreens,
+  ChatScreen: ChatScreen,
+  ContactScreen: ContactScreen, 
   home: {
     screen: MyTab,
     navigationOptions: {

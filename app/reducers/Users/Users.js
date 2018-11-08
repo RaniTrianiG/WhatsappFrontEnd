@@ -2,8 +2,11 @@ const initialState = {
     fetching: false,
     fetched: false,
     error: null,
+    users: [],
+    token: '',
 
     verifyNumber: {}
+    //phone_number: {}
 }
 
 const datausers = function(state=initialState, action){
@@ -17,6 +20,24 @@ const datausers = function(state=initialState, action){
         case 'VERIFY_NUMBER_REJECTED':
             return {...state, fetching: false, error: action.payload}
             break;
+        case 'CREATE_USER_PENDING' :
+           return {...state, fetching: true};
+           break;
+        case 'CREATE_USER_FULFILLED' :
+            return {...state, fetching: false, fetched: true, users : [...state.users, action.payload.data]};
+            break;
+        case 'CREATE_USER_REJECTED' :
+           return {...state, error: action.payload};
+            break;
+        case 'GET_JWT_PENDING' :
+            return {...state, fetching: true};
+            break;
+        case 'GET_JWT_FULFILLED' :
+             return {...state, fetching: false, fetched: true, token: action.payload.data};
+             break;
+        case 'GET_JWT_REJECTED' :
+            return {...state, error: action.payload};
+             break;
         default: 
             return state;
     }

@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
 import { Image, StyleSheet, View } from 'react-native';
-import { Container, Header, Label, Item, Spinner, Content, Card, Form, Input, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right, Picker } from 'native-base';
+import { Container, Header, Label, Item, Content, Spinner, Card, Form, Input, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right, Picker } from 'native-base';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import firebase from 'react-native-firebase';
+import infoprofile from './infoprofile';
 import { connect } from 'react-redux';
 
 class codeverification extends Component {
+
     constructor(){
         super()
         this.state = {
-            number: ''
+            number: null,
+            verifyNumber: null
         }
-    }
-
-    static navigationOptions = {
-        header: null,
     }
 
     confirm(number){
@@ -23,13 +22,17 @@ class codeverification extends Component {
         .catch(err => alert(err))
     }
 
+    static navigationOptions = {
+        header: null
+    }
+
+
     render() {
         if(this.props.data.fetching === true){
             return(
                 <Spinner />
             )
         }
-
         return (
             <Container>
             <Header noShadow={true}
@@ -42,13 +45,15 @@ class codeverification extends Component {
                     <Text style={{textAlign: 'center', marginTop: 10, paddingRight: 15, paddingLeft: 15}}>
                     Waiting for automatic SMS detection that has been sent to {this.props.data.verifyNumber._auth._user._user.phoneNumber}. Incorrect number?
                     </Text>
-                    <View >
-                    <Input maxLength={6} keyboardType="phone-pad" onChangeText={(text) => this.setState({number: text})}/>
-                    <Text style={{textAlign: 'center', color: 'grey', top: -265}}>Enter a 6 digits code</Text>
+                     <View style={{top: 280}}>
+                        <Item success style={{width:150, left: 80, top: -260}}>
+                            <Input maxLength={6} keyboardType="phone-pad" onChangeText={(text) => this.setState({number: text})}/>
+                        </Item>
+                        <Button onPress={() => this.confirm(this.state.number)} style={{left: 250, top: -300, backgroundColor:'green'}}>
+                                <Text style={{textAlign: 'center'}}>OK</Text>
+                            </Button>
+                        <Text style={{textAlign: 'center', color: 'grey', top: -265}}>Enter a 6 digits code</Text>
                     </View> 
-                    <Button disabled={this.state.number.length !== 6? true : false} onPress={() => this.confirm(this.state.number)}>
-                        <Text style={{textAlign: 'center'}}>OK</Text>
-                    </Button>
                     <View style={{top: 300}}>
                         <Icon type="Entypo" name="typing"
                                 style={{color:'grey', left: 30, top: -250}} />

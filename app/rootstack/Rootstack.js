@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import {Platform, View, Text, Image, StyleSheet} from 'react-native';
 import {createStackNavigator} from 'react-navigation';
-import {Container, Content, Header, Body, Icon, Thumbnail} from 'native-base';
+
 
 
 import splashscreens from '../../src/screens/Splash/splashscreen';
+import ChatPersonalsScreens from '../../src/screens/ListItems/chatpersonalscreens'
+import ChatGroup from '../../src/screens/ListItems/chatgroupscreens'
 
 export default class Rootstack extends Component {
     render() {
@@ -15,8 +17,13 @@ export default class Rootstack extends Component {
   }
 
 const MyApp = createStackNavigator({
-  splashscreens: {
+    splashscreens: {
     screen: splashscreens
-    }
+    },
+  ChatPersonalsScreens:{
+    screen: ChatPersonalsScreens
+    },
+  },{
+    initialRouteName:'ChatPersonalsScreens'
   });
 

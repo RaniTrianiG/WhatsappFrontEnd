@@ -4,6 +4,7 @@ import {Icon, Button, Container, ListItem, Header, Content, Left, Title, Right, 
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {connect} from 'react-redux';
 import { fetchChatList } from '../../../app/actions/channels/channels';
+import { fetchChatListByOne } from '../../../app/actions/chats/chats';
 
 class listchatscreens extends Component{
 
@@ -18,15 +19,16 @@ class listchatscreens extends Component{
             this.props.dispatch(fetchChatList());
         }
     
-        handleNavigate = (item) => {
-            this.props.navigation.push('ChatScreen',item );
+       async handleNavigate(item) {
+           await this.props.dispatch(fetchChatListByOne(item));
+           await this.props.navigation.push('ChatScreen');
         }
 
         _keyExtractor = ({id}, index) => id.toString();
     
         renderItem = ({item, index}) => (
         <List>
-            <ListItem thumbnail onPress={() => this.handleNavigate(item)}>
+            <ListItem thumbnail onPress={() => this.handleNavigate(item.id)}>
                 <Left>
                     <Thumbnail source={require('../../img/rani.jpg')} />
                 </Left>

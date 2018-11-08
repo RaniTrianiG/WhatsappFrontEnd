@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Container, Head, Content, Left, Body, List, ListItem, Thumbnail, Text, Icon } from 'native-base';
 import { FlatList, View } from 'react-native';
-import Contacts from 'react-native-contacts';
+import { connect } from 'react-redux';
+// import Contacts from 'react-native-contacts';
+import { fetchContact } from '../../../app/actions/contacts/contacts';
 
 class NamingHeader extends Component{
     render(){
@@ -20,7 +22,7 @@ class ContactScreen extends Component {
     constructor(){
         super()
         this.state = {
-            contacts: null
+            contacts: ''
         }
     }
 
@@ -35,12 +37,20 @@ class ContactScreen extends Component {
         headerTitle: <NamingHeader />
     }
 
-    componentDidMount(){
-        // parameter 'err' jangan di hapus
-        Contacts.getAll((err, contacts) => {
-            this.setState({contacts: contacts})
-        })
+    handleNavigate = (item) => {
+        this.props.navigation.push('ChatScreen')
     }
+
+    _keyExtractor = ({id}, index) => id.toString();
+
+    componentDidMount(){
+        // // parameter 'err' jangan di hapus
+        // Contacts.getAll((err, contacts) => {
+        //     this.setState({contacts: contacts})
+        // })
+        this.props.dispatch(fetchContact());
+    }
+
 
     render(){
         return(
@@ -64,15 +74,18 @@ class ContactScreen extends Component {
                         </Body>
                     </ListItem>
                         <FlatList
-                            data={this.state.contacts}
+                            data={this.props.datacontacts.contacts}
+                            keyExtractor={this._keyExtractor}
                             renderItem={({item}) =>
-                                <ListItem avatar>
+                                <ListItem avatar onPress={() => this.handleNavigate(item)}>
                                     <Left>
                                         <Thumbnail source={{uri: "http://profilepicturesdp.com/wp-content/uploads/2018/06/default-profile-picture-whatsapp-9.jpg"}} style={{ height: 50, width: 50 }}/>
                                     </Left>
                                     <Body>
-                                        <Text>{item.givenName + ' ' + item.familyName }</Text>
-                                        <Text>Status</Text>
+                                        {/* <Text>{item.givenName + ' ' + item.familyName }</Text> */}
+
+                                        <Text>{item.name}</Text>
+                                        <Text>{item.phone_number}</Text>
                                     </Body>
                                 </ListItem>
                             }
@@ -101,4 +114,8 @@ class ContactScreen extends Component {
     }
 }
 
-export default ContactScreen;
+const mapStateToProps = (state) => ({
+    datacontacts : state.datacontacts
+
+})
+export default connect(mapStateToProps)(ContactScreen);

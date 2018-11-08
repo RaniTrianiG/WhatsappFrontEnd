@@ -37,13 +37,13 @@ class codeverification extends Component {
             <Container>
             <Header noShadow={true}
             style={{backgroundColor: 'white'}}>
-              <Text style={{color: '#1F6E43', top: 20, fontWeight:'bold'}}>Verification {this.props.data.verifyNumber.phoneNumber}</Text>
+              <Text style={{color: '#1F6E43', top: 20, fontWeight:'bold'}}>Verification {this.props.data.verifyNumber._auth._user._user.phoneNumber}</Text>
               <FontAwesome 
               style={{color: 'grey', fontWeight: 'bold', left: 40, top: 22, fontSize: 20}} name="ellipsis-v"/>
             </Header>
             <Content>
                     <Text style={{textAlign: 'center', marginTop: 10, paddingRight: 15, paddingLeft: 15}}>
-                    Waiting for automatic SMS detection that has been sent to +62 895412955704. Incorrect number?
+                    Waiting for automatic SMS detection that has been sent to {this.props.data.verifyNumber._auth._user._user.phoneNumber}. Incorrect number?
                     </Text>
                      <View style={{top: 280}}>
                         <Item success style={{width:150, left: 80, top: -260}}>

@@ -54,6 +54,15 @@ class NamingHeader extends Component{
   })
 
 const MyApp = createStackNavigator({ 
+  
+  splashscreens: splashscreens,
+  registerscreen : Register,
+  codeverification: codeverification,
+  infoprofile: infoprofile,
+  listchatscreens: listchatscreens,
+  ChatScreen: ChatScreen,
+  ContactScreen: ContactScreen, 
+  Addcontacts: Addcontacts,
   home: {
     screen: MyTab,
     navigationOptions: {
@@ -64,14 +73,6 @@ const MyApp = createStackNavigator({
       },
       headerTitle: <NamingHeader />
     }
-  },
-  splashscreens: splashscreens,
-  registerscreen : Register,
-  codeverification: codeverification,
-  infoprofile: infoprofile,
-  listchatscreens: listchatscreens,
-  ChatScreen: ChatScreen,
-  ContactScreen: ContactScreen, 
-  Addcontacts: Addcontacts,
+  }
 });
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image, StyleSheet, View } from 'react-native';
+import { Image, StyleSheet, View, AsyncStorage } from 'react-native';
 import { Container, Header, Label, Item, Content, Spinner, Card, Form, Input, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right, Picker } from 'native-base';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import firebase from 'react-native-firebase';
@@ -11,9 +11,17 @@ class codeverification extends Component {
     constructor(){
         super()
         this.state = {
+            phone_number: '',
             number: null,
             verifyNumber: null
         }
+    }
+
+    async componentDidMount(){
+        const phone_number = await AsyncStorage.getItem('phone_number')
+        this.setState({
+            phone_number: phone_number
+        })
     }
 
     confirm(number){
@@ -37,7 +45,7 @@ class codeverification extends Component {
             <Container>
             <Header noShadow={true}
             style={{backgroundColor: 'white'}}>
-              <Text style={{color: '#1F6E43', top: 20, fontWeight:'bold'}}>Verification Number {this.props.data.verifyNumber._auth._user._user.phoneNumber}</Text>
+              <Text style={{color: '#1F6E43', top: 20, fontWeight:'bold'}}>Verification Number {this.state.phone_number}</Text>
               <FontAwesome 
               style={{color: 'grey', fontWeight: 'bold', left: 40, top: 22, fontSize: 20}} name="ellipsis-v"/>
             </Header>

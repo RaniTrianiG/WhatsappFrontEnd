@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image, StyleSheet, View } from 'react-native';
+import { Image, StyleSheet, View, AsyncStorage } from 'react-native';
 import { Container, Header, Label, Item, Content, Card, Form, Input, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right, Picker } from 'native-base';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
@@ -20,6 +20,7 @@ class registerscreen extends Component {
     }
 
     async nextButton(phone_number){
+        await AsyncStorage.setItem('phone_number', phone_number)
         await this.props.dispatch(sendVerification(phone_number))
         .then(this.props.navigation.navigate('codeverification'))
     }

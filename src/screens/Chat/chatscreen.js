@@ -1,17 +1,18 @@
 import React, { Component } from 'react'
 import { View, Text, Container, Header, Footer, Item, Input, Icon, Content, Button, List, ListItem, Left } from 'native-base'
-import { AsyncStorage, FlatList, TouchableOpacity } from 'react-native'
+import { AsyncStorage, Alert, TouchableOpacity } from 'react-native'
 import SocketIOClient from 'socket.io-client'
 import ImagePicker from 'react-native-image-picker';
 import axios from 'axios'
 import { connect } from 'react-redux';
 import { fetchChatListByOne } from '../../../app/actions/chats/chats';
+import firebase from 'react-native-firebase'
 
 class NamingHeader extends Component{
 
   async componentDidMount (){
       const id = await AsyncStorage.getItem('channel_id');
-      axios.get (`http://192.168.0.14:5000/api/channel/${id}`)
+      axios.get (`https://whatsapparkademy.serveo.net/api/channel/${id}`)
       .then(result => this.setState({channel: result.data}))
   } 
 
@@ -43,9 +44,9 @@ class ChatScreen extends Component {
       user_id: '',
       channel_id: '',
       messages: [],
-      pictureURL : ''
+      pictureURL : 'https://www.unimib.it/sites/default/files/default_images/transgender_1.png'
     };
-    this.socket = SocketIOClient('http://192.168.0.14:5000/',
+    this.socket = SocketIOClient('https://whatsapparkademy.serveo.net/',
     {reconnection: true,
     reconnectionDelay: 500,
 	  reconnectionAttempts: Infinity, 
@@ -66,7 +67,7 @@ class ChatScreen extends Component {
       })
       await axios({
         method: 'GET',
-        url: `http://192.168.0.14:5000/api/user/num=${phone}`
+        url: `https://whatsapparkademy.serveo.net/api/user/num=${phone}`
       }).then(data => {
         this.setState({
           username: data.data.name,
@@ -113,10 +114,37 @@ class ChatScreen extends Component {
     }
 
     async uploadImage(){
-      const imageRef = await firebase.storage().ref('ChatUploadImage').child(new Date())
-      await imageRef.put(this.state.pictureURL)
-      await imageRef.getDownloadURL().then(url => this.setState({message: url}))
-      await this.sendMessage()
+      // console.log(this.state.pictureURL)
+      // const imageRef = await firebase.storage().ref('ImageChatScreen').child('ghjghj')
+      // console.log(imageRef)
+      // await imageRef.put(this.state.pictureURL)
+      const imageRef = firebase.storage().ref('profilePictures').child(this.props.data.verifyNumber._auth._user._user.phoneNumber)
+        await imageRef.put(this.state.pictureURL)
+        await imageRef.getDownloadURL().then(url => this.setState({pictureURL: url}))
+    }
+
+    deleteAlert(id){
+      Alert.alert(
+        'Delete Chat!',
+        'Delete Msg',
+        [
+          {text: 'Ok', onPress: () => this.delete(id)}
+        ]
+      ),
+      { cancelable: true }
+    }
+     delete(id){
+      axios({
+        method: 'DELETE',
+        url: `https://whatsapparkademy.serveo.net/api/chat/del=${id}`
+    }).then(() => {
+        axios({
+            url: `https://whatsapparkademy.serveo.net/api/chat/ch=${this.state.channel_id}`,
+            method: 'GET',
+        }).then((result) => {
+            this.setState({messages: result.data})
+        })
+    })
     }
 
   render() {
@@ -126,7 +154,7 @@ class ChatScreen extends Component {
         {this.state.messages.map((data, index)=>{
             return(
               <List key={index}>
-                <ListItem>
+                <ListItem onPress={() => this.deleteAlert(data.id)}>
                   <Text>{data.name} : {data.message}</Text>
                 </ListItem>
               </List>

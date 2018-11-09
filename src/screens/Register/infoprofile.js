@@ -29,14 +29,15 @@ class infoprofile extends Component {
               path: 'images',
             },
         };
-        ImagePicker.showImagePicker(options, (response) => {
-            this.setState({pictureURL: 'file://' + response.path})
-            this.uploadImage()
+         ImagePicker.showImagePicker(options, async (response) => {
+            await this.setState({pictureURL: 'file://' + response.path})
+            await this.uploadImage()
         })
     }
 
     async uploadImage(){
-        const imageRef = firebase.storage().ref('profilePictures').child(this.props.data.verifyNumber._auth._user._user.phoneNumber)
+        const imageRef = await firebase.storage()
+        console.log(imageRef)
         await imageRef.put(this.state.pictureURL)
         await imageRef.getDownloadURL().then(url => this.setState({pictureURL: url}))
     }

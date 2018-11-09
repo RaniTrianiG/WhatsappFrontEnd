@@ -7,7 +7,7 @@ export function createContacts(data){
 
         axios({
             method: 'post',
-            url: 'http://192.168.0.14:5000/api/user/',
+            url: 'https://whatsapparkademy.serveo.net/api/user/',
             data: data
           }),
     }
@@ -15,6 +15,6 @@ export function createContacts(data){
 export function fetchContact(data){
     return{
         type:'FETCH_CONTACT',
-        payload: axios.get(`http://192.168.0.14:5000/api/user/`)
+        payload: axios.get(`https://whatsapparkademy.serveo.net/api/user/`)
     }
 }

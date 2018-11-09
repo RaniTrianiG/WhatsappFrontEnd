@@ -3,11 +3,10 @@ package com.whatsappfrontend;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-import com.geektime.rnonesignalandroid.ReactNativeOneSignalPackage;
 import com.imagepicker.ImagePickerPackage;
 
 import com.rt2zz.reactnativecontacts.ReactNativeContacts;
-
+import io.invertase.firebase.storage.RNFirebaseStoragePackage;
 import io.invertase.firebase.RNFirebasePackage;
 import io.invertase.firebase.auth.RNFirebaseAuthPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -31,9 +30,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new ReactNativeOneSignalPackage(),
             new ImagePickerPackage(),
-
+            new RNFirebaseStoragePackage(),
             new ReactNativeContacts(),
             new RNFirebasePackage(),
             new VectorIconsPackage(),

@@ -19,8 +19,8 @@ class registerscreen extends Component {
 		}
     }
 
-    nextButton(phone_number){
-        this.props.dispatch(sendVerification(phone_number))
+    async nextButton(phone_number){
+        await this.props.dispatch(sendVerification(phone_number))
         .then(this.props.navigation.navigate('codeverification'))
     }
 

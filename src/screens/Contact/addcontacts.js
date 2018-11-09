@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Container, Header, Content, Left, Right, Body, Thumbnail, Text, Icon, Item, Input, Label, Button } from 'native-base';
 import { FlatList, View, Alert } from 'react-native';
 import {connect} from 'react-redux';
-import { createContacts } from '../../../app/actions/contacts/contacts';
+import { createContacts, fetchContact } from '../../../app/actions/contacts/contacts';
 
 class Addcontacts extends Component{
 
@@ -14,18 +14,21 @@ class Addcontacts extends Component{
         }
     }
 
-    createDataUser(phone, name, pictureURL){
-        this.props.dispatch(createContacts({
+    async createDataUser(phone, name, pictureURL){
+        await this.props.dispatch(createContacts({
             phone_number:phone,
             name: name,
             profile_picture_url: pictureURL
         }))
-        .then(() => Alert.alert('Notification','Succeed to save!',
+        .then(async () => {
+            await this.props.dispatch(fetchContact())
+            Alert.alert('Notification','Succeed to save!',
         [
             {text: 'OK', onPress: () => this.props.navigation.navigate('ContactScreen')}
         ],
         { cancelable: true }
-    ))
+    )})
+       await this.props.dispatch(fetchContact())
     }
 
     static navigationOptions = {
@@ -37,7 +40,7 @@ class Addcontacts extends Component{
           <Container>
               <Header style={{backgroundColor:'white'}}>
             <Left>
-                <Button onPress={this.props.navigation.navigate('ContactScreen')} transparent style={{backgroundColor: 'white'}}>
+                <Button onPress={() => this.props.navigation.navigate('ContactScreen')} transparent style={{backgroundColor: 'white'}}>
                     <Icon type="FontAwesome" name="close" style={{color:'black', fontSize: 20}} />
                 </Button>
             </Left>
@@ -46,7 +49,7 @@ class Addcontacts extends Component{
             </Body>
             <Right>
                 <Button transparent style={{backgroundColor:'white'}}
-                onPress={() => this.createDataUser(this.state.name, this.state.phone_number)}>
+                onPress={() => this.createDataUser(this.state.phone_number, this.state.name)}>
                 <Icon type="Entypo" name="check" style={{color: 'black', fontSize: 20}}/>
                 </Button>
             </Right>

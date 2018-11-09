@@ -24,7 +24,7 @@ const datausers = function(state=initialState, action){
            return {...state, fetching: true};
            break;
        case 'CREATE_USER_FULFILLED' :
-            return {...state, fetching: false, fetched: true, users : [...state.users, action.payload.data], token : action.payload2.data};
+            return {...state, fetching: false, fetched: true, users : [...state.users, action.payload.data]};
             break;
        case 'CREATE_USER_REJECTED' :
            return {...state, error: action.payload};

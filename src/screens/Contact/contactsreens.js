@@ -51,7 +51,6 @@ class ContactScreen extends Component {
         this.props.dispatch(fetchContact());
     }
 
-
     render(){
         return(
             <Container>

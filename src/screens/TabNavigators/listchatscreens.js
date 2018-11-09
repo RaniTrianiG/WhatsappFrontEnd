@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {View, Text, StyleSheet, Image, FlatList, Alert} from 'react-native';
+import {View, Text, AsyncStorage, StyleSheet, Image, FlatList, Alert} from 'react-native';
 import {Icon, Button, Container, ListItem, Header, Content, Left, Title, Right, Card, CardItem, Fab, Thumbnail, Body, Item, Input, List} from 'native-base';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {connect} from 'react-redux';
@@ -7,7 +7,7 @@ import { fetchChatList } from '../../../app/actions/channels/channels';
 import { fetchChatListByOne } from '../../../app/actions/chats/chats';
 
 class listchatscreens extends Component{
-
+    
     constructor(props) {
         super(props);
         this.state = {
@@ -20,6 +20,8 @@ class listchatscreens extends Component{
         }
     
        async handleNavigate(item) {
+           await AsyncStorage.removeItem('channel_id')
+           await AsyncStorage.setItem('channel_id', `${item}`)
            await this.props.dispatch(fetchChatListByOne(item));
            await this.props.navigation.push('ChatScreen');
         }

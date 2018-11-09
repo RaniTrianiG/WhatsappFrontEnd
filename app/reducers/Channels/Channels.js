@@ -8,13 +8,13 @@ const initialState = {
 
 const channelusers = function(state=initialState, action){
     switch(action.type){
-        case 'FETCH_CHATLIST_PENDING':
+        case 'GET_CHATLIST_PENDING':
             return {...state, fetching: true}
             break;
-        case 'FETCH_CHATLIST_FULFILLED':
+        case 'GET_CHATLIST_FULFILLED':
             return {...state, fetching: false, fetched: true, channels: action.payload.data}
             break;
-        case 'FETCH_CHATLIST_REJECTED':
+        case 'GET_CHATLIST_REJECTED':
             return {...state, error: action.payload}
             break;
         default:

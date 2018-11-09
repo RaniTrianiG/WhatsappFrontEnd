@@ -17,6 +17,15 @@ const datachats = function(state=initialState, action){
         case 'FETCH_CHATLIST_REJECTED':
             return {...state, error: action.payload}
             break;
+        case 'DELETE_CHAT_PENDING':
+            return {...state, fetching: true}
+            break;
+        case 'DELETE_CHAT_FULFILLED':
+            return {...state, fetching: false, fetched: true, chats: action.payload.data}
+            break;
+        case 'DELETE_CHAT_REJECTED':
+            return {...state, error: action.payload}
+            break;
         default:
          return state
     }       

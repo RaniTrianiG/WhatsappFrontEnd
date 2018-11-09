@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { View, Text, Container, Header, Footer, Item, Input, Icon, Content, Button, List, ListItem, Left } from 'native-base'
-import { AsyncStorage, FlatList } from 'react-native'
+import { AsyncStorage, Alert } from 'react-native'
 import SocketIOClient from 'socket.io-client'
 import axios from 'axios'
 import { connect } from 'react-redux';
-import { fetchChatListByOne } from '../../../app/actions/chats/chats';
+import { deleteChat  } from '../../../app/actions/chats/chats';
 
 class NamingHeader extends Component{
   render(){
@@ -82,13 +82,38 @@ class ChatScreen extends Component {
     this.setState({ message: '' });
 };
 
+  deleteAlert(id){
+    Alert.alert(
+      'Delete Chat!',
+      'Delete Msg',
+      [
+        {text: 'Ok', onPress: () => this.delete(id)}
+      ]
+    ),
+    { cancelable: true }
+  }
+
+  delete(id){
+    axios({
+      method: 'DELETE',
+      url: `http://192.168.0.14:5000/api/chat/del=${id}`
+  }).then(() => {
+      axios({
+          type:'FETCH_CHATLIST',
+          payload: axios.get(`http://192.168.0.14:5000/api/chat/ch=${thi.state.channel_id}`)
+      }).then((result) => {
+          this.setState({message: result})
+      })
+  })
+  }
+
   render() {
     return (
       <Container>
         <Content>
         {this.state.messages.map((data, index)=>{
             return(
-              <List key={index}>
+              <List onPress={() => this.deleteAlert(data.id)} key={index}>
                 <ListItem>
                   <Text>{data.name} : {data.message}</Text>
                 </ListItem>

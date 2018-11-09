@@ -14,7 +14,7 @@ export function createUsers(data){
         type:'CREATE_USER',
         payload: axios({
             method: 'post',
-            url: 'http://35.231.253.135:5000/api/user/',
+            url: 'http://192.168.0.14:5000/api/user/',
             data: data
         }),
     };
@@ -25,7 +25,7 @@ export function createUsers(data){
                 type: 'GET_JWT',
                 payload: axios({
                     method: 'post',
-                    url: 'http://35.231.253.135:5000/api/login/',
+                    url: 'http://192.168.0.14:5000/api/login/',
                     data: data
                 })
             }

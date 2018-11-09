@@ -1,16 +1,31 @@
 import React, { Component } from 'react'
 import { View, Text, Container, Header, Footer, Item, Input, Icon, Content, Button, List, ListItem, Left } from 'native-base'
-import { AsyncStorage, FlatList } from 'react-native'
+import { AsyncStorage, FlatList, TouchableOpacity } from 'react-native'
 import SocketIOClient from 'socket.io-client'
+import ImagePicker from 'react-native-image-picker';
 import axios from 'axios'
 import { connect } from 'react-redux';
 import { fetchChatListByOne } from '../../../app/actions/chats/chats';
 
 class NamingHeader extends Component{
+
+  async componentDidMount (){
+      const id = await AsyncStorage.getItem('channel_id');
+      axios.get (`http://192.168.0.14:5000/api/channel/${id}`)
+      .then(result => this.setState({channel: result.data}))
+  } 
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      channel : ''
+    }
+  }
+
   render(){
     return(
       <View style={{top:20}}>
-        <Text style={{color:'white', fontWeight: 'bold', left: 10, fontSize: 17}}>{this.props.channels}</Text>
+        <Text style={{color:'white', fontWeight: 'bold', left: 10, fontSize: 17}}>{this.state.channel.name}</Text>
         <Icon type="Entypo" name="add-user" style={{color:'white', top:-20 , fontSize: 20, left: 200}} />
         <Icon type="Entypo" name="dots-three-vertical" style={{color: 'white', top:-38 , fontSize: 20, left: 270}}/>
       </View>
@@ -27,9 +42,10 @@ class ChatScreen extends Component {
       message: '',
       user_id: '',
       channel_id: '',
-      messages: []
+      messages: [],
+      pictureURL : ''
     };
-    this.socket = SocketIOClient('http://35.231.253.135:5000/',
+    this.socket = SocketIOClient('http://192.168.0.14:5000/',
     {reconnection: true,
     reconnectionDelay: 500,
 	  reconnectionAttempts: Infinity, 
@@ -50,7 +66,7 @@ class ChatScreen extends Component {
       })
       await axios({
         method: 'GET',
-        url: `http://35.231.253.135:5000/api/user/num=${phone}`
+        url: `http://192.168.0.14:5000/api/user/num=${phone}`
       }).then(data => {
         this.setState({
           username: data.data.name,
@@ -82,6 +98,27 @@ class ChatScreen extends Component {
     this.setState({ message: '' });
 };
 
+    selectPict(){
+      options = {
+          title: 'Select Avatar',
+          storageOptions: {
+            skipBackup: true,
+            path: 'images',
+          },
+      };
+      ImagePicker.showImagePicker(options, (response) => {
+          this.setState({pictureURL: 'file://' + response.path})
+          this.uploadImage()
+      })
+    }
+
+    async uploadImage(){
+      const imageRef = await firebase.storage().ref('ChatUploadImage').child(new Date())
+      await imageRef.put(this.state.pictureURL)
+      await imageRef.getDownloadURL().then(url => this.setState({message: url}))
+      await this.sendMessage()
+    }
+
   render() {
     return (
       <Container>
@@ -98,8 +135,9 @@ class ChatScreen extends Component {
         </Content>
         <Footer style={{backgroundColor: 'white'}}>
         <Item rounded style={{width:280}}>
-        
+          <TouchableOpacity onPress={() => this.selectPict()}>
             <Icon style={{flexDirection: 'row', color:'grey'}} type="MaterialCommunityIcons" name="emoticon-happy" size={20} color="#000"/>
+          </TouchableOpacity>
           <Input 
             value={this.state.message}
             onChangeText={data => this.setState({ message: data })}

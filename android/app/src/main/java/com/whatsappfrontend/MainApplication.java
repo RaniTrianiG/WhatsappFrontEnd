@@ -3,6 +3,8 @@ package com.whatsappfrontend;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.geektime.rnonesignalandroid.ReactNativeOneSignalPackage;
+import com.imagepicker.ImagePickerPackage;
 
 import com.rt2zz.reactnativecontacts.ReactNativeContacts;
 
@@ -29,6 +31,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new ReactNativeOneSignalPackage(),
+            new ImagePickerPackage(),
 
             new ReactNativeContacts(),
             new RNFirebasePackage(),

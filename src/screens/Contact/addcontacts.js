@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Header, Content, Left, Right, Body, Thumbnail, Text, Icon, Item, Input, Label, Button } from 'native-base';
-import { FlatList, View } from 'react-native';
+import { FlatList, View, Alert } from 'react-native';
 import {connect} from 'react-redux';
 import { createContacts } from '../../../app/actions/contacts/contacts';
 
@@ -20,8 +20,12 @@ class Addcontacts extends Component{
             name: name,
             profile_picture_url: pictureURL
         }))
-    
-        .then(() => this.props.navigation.navigate('home'))
+        .then(() => Alert.alert('Notification','Succeed to save!',
+        [
+            {text: 'OK', onPress: () => this.props.navigation.navigate('ContactScreen')}
+        ],
+        { cancelable: true }
+    ))
     }
 
     static navigationOptions = {
@@ -33,7 +37,7 @@ class Addcontacts extends Component{
           <Container>
               <Header style={{backgroundColor:'white'}}>
             <Left>
-                <Button transparent style={{backgroundColor: 'white'}}>
+                <Button onPress={this.props.navigation.navigate('ContactScreen')} transparent style={{backgroundColor: 'white'}}>
                     <Icon type="FontAwesome" name="close" style={{color:'black', fontSize: 20}} />
                 </Button>
             </Left>

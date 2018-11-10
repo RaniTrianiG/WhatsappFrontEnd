@@ -20,15 +20,8 @@ class Addcontacts extends Component{
             name: name,
             profile_picture_url: pictureURL
         }))
-        .then(async () => {
-            await this.props.dispatch(fetchContact())
-            Alert.alert('Notification','Succeed to save!',
-        [
-            {text: 'OK', onPress: () => this.props.navigation.navigate('ContactScreen')}
-        ],
-        { cancelable: true }
-    )})
-       await this.props.dispatch(fetchContact())
+        .then(() => this.props.navigation.navigate('ContactScreen'))
+    
     }
 
     static navigationOptions = {

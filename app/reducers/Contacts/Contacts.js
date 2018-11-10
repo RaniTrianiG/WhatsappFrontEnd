@@ -12,7 +12,7 @@ const datacontacts = function(state=initialState, action){
             return {...state, fetching: true}
             break;
         case 'CREATE_CONTACT_FULFILLED':
-            return {...state, fetching: false, fetched: true, contacts: action.payload.data}
+            return {...state, fetching: false, fetched: true, contacts: [...state.contacts, action.payload.data]}
             break;
         case 'CREATE_CONTACT_REJECTED':
             return {...state, error: action.payload}

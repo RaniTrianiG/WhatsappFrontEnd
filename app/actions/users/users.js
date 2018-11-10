@@ -16,7 +16,7 @@ export function createUsers(data){
             method: 'post',
             url: 'https://whatsapparkademy.serveo.net/api/user/',
             data: data
-        }),
+        })
     };
 }
         

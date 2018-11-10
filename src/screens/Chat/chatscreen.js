@@ -59,13 +59,13 @@ class ChatScreen extends Component {
       this.setState({ messages: [...this.state.messages, data] });
     };
   };
-  async componentWillMount() {
-      const phone = await AsyncStorage.getItem('phoneNumber')
+   async componentDidMount() {
+      const phone = await AsyncStorage.getItem('phone_number')
       const channel = await AsyncStorage.getItem('channel_id')
       this.setState({
         channel_id: channel
       })
-      await axios({
+       axios({
         method: 'GET',
         url: `https://whatsapparkademy.serveo.net/api/user/num=${phone}`
       }).then(data => {
@@ -73,9 +73,13 @@ class ChatScreen extends Component {
           username: data.data.name,
           user_id: data.data.id
         })
-      })
-      this.setState({
-        messages: this.props.datachats.chats
+      }).then(() => {
+        axios({
+              method: 'GET',
+              url: `https://whatsapparkademy.serveo.net/api/chat/ch=${channel}`
+          }).then((result) => {
+              this.setState({messages: result.data})
+          })
       })
       
   }
@@ -90,6 +94,7 @@ class ChatScreen extends Component {
   }
 
   sendMessage = data => {
+    console.log(this.state.username)
     this.socket.emit('SEND_MESSAGE', {
       name: this.state.username,
       message: this.state.message,
